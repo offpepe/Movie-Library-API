@@ -5,10 +5,12 @@ const userValidation = require('../validations/users');
 const usersControllers = require('../controllers/users');
 
 /* USERS ROUTES */
-router.post('/users',
+router.post('/users/create',
   userValidation.validateNewUserData,
   userValidation.validateEmail,
   usersControllers.createUser
   );
+
+router.post('/users/login', usersControllers.loginUser);
 
 module.exports = router;
