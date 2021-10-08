@@ -1,6 +1,7 @@
+const connection = require('../connections/mongodb_conn');
+
 const STATUS = require('../services/httpStatus');
 const ERROR = require('../error/messages');
-const fs = require('fs').promises;
 
 const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -15,6 +16,15 @@ const validateNewUserData = async (req, res, next) => {
   next()
 }
 
+const validateEmail = async (req, res, next) => {
+    const { email } = req.body;
+  const db = await connection();
+  const user = await db.collection('users').find({ email }).toArray();
+  if (user[0]) return res.status(STATUS.ERROR.NOT_ACCEPTABLE).json(ERROR.emailAlreadyExist);
+  next();
+}
+
 module.exports = {
     validateNewUserData,
+    validateEmail,
 }
