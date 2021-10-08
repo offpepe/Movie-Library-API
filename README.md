@@ -15,6 +15,6 @@ Here's where i tested multer in REST API
 
 - [ ] Creation endpoints GET, POST, PUT and DELETE
 - [ ] Creation of CRUD API with REST archtecture
-- [ ] Generation of tokens with JWT
+- [x] Generation of tokens with JWT
 - [ ] Management of tokens
 - [ ] Upload of files and storage with Multer
