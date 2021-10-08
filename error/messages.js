@@ -12,6 +12,11 @@ module.exports = {
     usernameOrPasswordInvalid: {
         error: 'invalid_username_or_email',
         code: 422,
-        message: 'o seu nome deve conter mais de 5 letras e sua senha deve conter mais do que 8 caracteres',
+        message: 'O seu nome deve conter mais de 5 letras e sua senha deve conter mais do que 8 caracteres',
+    },
+    emailAlreadyExist: {
+        error: 'email_already_registered',
+        code: 409,
+        message: 'Este email já foi cadastrado'
     },
 };
