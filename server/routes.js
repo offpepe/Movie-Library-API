@@ -11,6 +11,6 @@ router.post('/users/create',
   usersControllers.createUser
   );
 
-router.post('/users/login', usersControllers.loginUser);
+router.post('/users/login', userValidation.validateLoginData, usersControllers.loginUser);
 
 module.exports = router;

@@ -10,7 +10,7 @@ const createUser = async (username, email, password) => {
 
 const loginUser = async (email, password) => {
   const db = await conn();
-  const op = await db.collection(coll).find({ email }).toArray();
+  const op = await db.collection(coll).find({ email, password }).toArray();
   const user = op[0];
   return user;
 }

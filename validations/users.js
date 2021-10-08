@@ -14,7 +14,7 @@ const validateNewUserData = async (req, res, next) => {
   if(username.length < 5 || password.length < 8)
     return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.usernameOrPasswordInvalid);
   next()
-}
+};
 
 const validateEmail = async (req, res, next) => {
     const { email } = req.body;
@@ -22,9 +22,19 @@ const validateEmail = async (req, res, next) => {
   const user = await db.collection('users').find({ email }).toArray();
   if (user[0]) return res.status(STATUS.ERROR.NOT_ACCEPTABLE).json(ERROR.emailAlreadyExist);
   next();
-}
+};
+
+const validateLoginData = async (req, res, next) => {
+  const { email, password } = req.body;
+  if(!email || !password)
+    return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.someFieldEmpty);
+  if(!pattern.test(email))
+    return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.emailOrPasswordInvalid);
+  next()
+};
 
 module.exports = {
     validateNewUserData,
     validateEmail,
+    validateLoginData,
 }

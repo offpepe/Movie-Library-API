@@ -19,4 +19,9 @@ module.exports = {
         code: 409,
         message: 'Este email já foi cadastrado'
     },
+    emailOrPasswordInvalid: {
+        error: 'invalid_email_or_password',
+        code: 422,
+        message: 'Email ou a senha incorreto.'
+    },
 };

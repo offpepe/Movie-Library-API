@@ -1,4 +1,5 @@
 const STATUS = require('../services/httpStatus');
+const ERROR = require('../error/messages');
 const usersService = require('../services/users');
 
 const createUser = async (req, res) => {
@@ -10,8 +11,8 @@ const createUser = async (req, res) => {
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const data = await usersService.loginUser(email, password);
-  if (!data) res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json({ message: 'in progress' });
-  res.status(STATUS.SUCCESS.ACCEPTED).json(data);
+  if (!data) return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.emailOrPasswordInvalid);
+  return res.status(STATUS.SUCCESS.ACCEPTED).json(data);
 }
 
 module.exports = {
