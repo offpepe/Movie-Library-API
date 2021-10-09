@@ -24,4 +24,14 @@ module.exports = {
         code: 422,
         message: 'Email ou a senha incorreto.'
     },
+    newMovieData: {
+        error: 'invalid_data',
+        code: 422,
+        message: 'Todos os campos precisam ser preenchidos',
+    },
+    fileTypeNotAcceptable: {
+        error: 'file_type_not_acceptable',
+        code: 406,
+        message: 'O tipo do arquivo deve ser JPEG'
+    }
 };

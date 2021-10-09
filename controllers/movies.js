@@ -8,6 +8,7 @@ const createMovie = async (req, res) => {
   try {
     const { title, subtitle, description } = req.body;
     const { path } = req.file; 
+    console.log(req.file);
     const op = await moviesService.createMovie(title, subtitle, description, path);
     res.status(STATUS.SUCCESS.CREATED).json(op);   
   } catch (error) {
