@@ -11,7 +11,13 @@ const getMovies = async () => {
     return movies;
 };
 
+const updateMovie = async (id, title, subtitle, description, conver) => {
+    const updated = await moviesModel.updateMovie(id, title, subtitle, description, conver);
+    return updated
+}
+
 module.exports = {
     createMovie,
     getMovies,
+    updateMovie,
 };

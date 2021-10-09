@@ -25,7 +25,19 @@ const getMovies = async (_req, res) => {
   }
 }
 
+const updateMovie = async (req, res) => {
+  try {
+    const { id, title, subtitle, description } = req.body;
+    const { path } = req.file;
+    const updated = await moviesService.updateMovie(id, title, subtitle, description, path);
+    res.status(STATUS.SUCCESS.ACCEPTED).json(updated);
+  } catch (error) {
+    res.status(STATUS.ERROR.INTERNAL_ERROR).json(internalError(error));
+  }
+}
+
 module.exports = {
     createMovie,
     getMovies,
+    updateMovie,
 }
