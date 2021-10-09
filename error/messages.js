@@ -24,6 +24,11 @@ module.exports = {
         code: 422,
         message: 'Email ou a senha incorreto.'
     },
+    invalidUserType: {
+        error: 'invalid_data',
+        code: 422,
+        message: 'o tipo deve ser "Creator"(criador) ou "Reader"(leitor)',
+    },
     newMovieData: {
         error: 'invalid_data',
         code: 422,
@@ -33,5 +38,10 @@ module.exports = {
         error: 'file_type_not_acceptable',
         code: 406,
         message: 'O tipo do arquivo deve ser JPEG'
+    },
+    notLoggedIn: {
+        error: 'not_logged',
+        code: 401,
+        message: 'É necessário login para este tipo de requisição',
     }
 };

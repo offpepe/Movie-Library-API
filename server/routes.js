@@ -15,7 +15,12 @@ router.post('/users/create',
   usersControllers.createUser
   );
 router.post('/users/login', userValidation.validateLoginData, usersControllers.loginUser);
-router.post('/movies/create', uploadMovie, moviesValidations.validateNewMovieData, moviesControllers.createMovie);
-router.get('/movies/', moviesControllers.getMovies);
+router.post('/movies/create',
+  moviesValidations.validateToken,
+  uploadMovie,
+  moviesValidations.validateNewMovieData,
+  moviesControllers.createMovie
+);
+router.get('/movies/', moviesValidations.validateToken, moviesControllers.getMovies);
 
 module.exports = router;  

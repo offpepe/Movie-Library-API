@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs').promises
 const STATUS = require('../services/httpStatus');
 const ERROR = require('../error/messages');
 
@@ -17,6 +17,16 @@ const validateNewMovieData = (req, res, next) => {
   next();
 };
 
+const validateToken = async (req, res, next) => {
+  const { authorization } = req.headers;
+  console.log(authorization);
+  const rawTokens = await fs.readFile('./assets/tokens.json', 'utf-8');
+  const tokens = JSON.parse(rawTokens);
+  if(!authorization || tokens.some((token) => token !== authorization)) return res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.notLoggedIn);
+  next()
+}
+
 module.exports = {
     validateNewMovieData,
+    validateToken,
 }

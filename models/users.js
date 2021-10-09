@@ -2,9 +2,9 @@ const conn = require('../connections/mongodb_conn');
 
 const coll = 'users';
 
-const createUser = async (username, email, password) => {
+const createUser = async (username, email, type, password) => {
       const db = await conn();
-      const op = await db.collection(coll).insertOne({ username, email, password  }); 
+      const op = await db.collection(coll).insertOne({ username, email, type, password  }); 
       return op;
 }
 

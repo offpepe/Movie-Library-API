@@ -3,8 +3,8 @@ const ERROR = require('../error/messages');
 const usersService = require('../services/users');
 
 const createUser = async (req, res) => {
-  const { username, email, password } = req.body;
-  const op = await usersService.createUser(username, email, password);
+  const { username, email, type, password } = req.body;
+  const op = await usersService.createUser(username, email, type, password);
   return res.status(STATUS.SUCCESS.CREATED).json(op);
 };
 

@@ -1,23 +1,23 @@
 const usersModel = require('../models/users');
 const generateToken = require('./generateToken');
 
-const createUser = async (username, email, password) => {
-  const op = await usersModel.createUser(username, email, password);
-  return op;
+const createUser = async (username, email, type, password) => {
+  const op = await usersModel.createUser(username, email, type, password);
+  const { insertedId } = op;
+  return { success: 'account created', type, email, insertedId };
 }
 
 const loginUser = async (email, password) => {
   const user = await usersModel.loginUser(email, password);
-  const token = await generateToken(email, password);
   if (!user) return false;
-  const { username } = user;
-  const response = {
+  const { username, type } = user;
+  const token = await generateToken(type);
+  return {
     success: 'login_successfully',
     code: 202,
     message: `Login de ${username} feito com sucesso!`,
     token,
-  }
-  return response;
+  };
 }
 
 module.exports = {
