@@ -9,6 +9,7 @@ const ERROR = {
     CONFLICT: 409,
     IM_NOT_A_TEAPOT: 418,
     UNPROCESSABLE_ENTITY: 422,
+    INTERNAL_ERROR: 505,
 };
 
 const SUCCESS = {

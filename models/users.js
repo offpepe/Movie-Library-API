@@ -1,4 +1,4 @@
-const conn = require('../connections/mongodb_conn')
+const conn = require('../connections/mongodb_conn');
 
 const coll = 'users';
 

@@ -1,1 +1,1 @@
-module.exports = (req, res) => res.status(200).json(req.file);
+module.exports = (req, res) => res.status(200).json({ file: req.file, data: req.body });
