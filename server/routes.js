@@ -19,5 +19,6 @@ router.post('/users/create',
 router.post('/users/login', userValidation.validateLoginData, usersControllers.loginUser);
 router.post('/upload', type, formDataTest);
 router.post('/movies/create', uploadMovie, moviesControllers.createMovie);
+router.get('/movies/', moviesControllers.getMovies);
 
 module.exports = router;

@@ -6,6 +6,12 @@ const createMovie = async (title, subtitle, description, conver) => {
     return { success: 'created', code: 201, message: 'Filme adicionado com sucess', id: insertedId };
 };
 
+const getMovies = async () => {
+    const movies = await moviesModel.getMovies();
+    return movies;
+};
+
 module.exports = {
     createMovie,
+    getMovies,
 };
