@@ -27,7 +27,8 @@ const getMovies = async (_req, res) => {
 
 const updateMovie = async (req, res) => {
   try {
-    const { id, title, subtitle, description } = req.body;
+    const { id } = req.params;
+    const { title, subtitle, description } = req.body;
     const { path } = req.file;
     const updated = await moviesService.updateMovie(id, title, subtitle, description, path);
     res.status(STATUS.SUCCESS.ACCEPTED).json(updated);
@@ -42,7 +43,7 @@ const deleteMovie = async (req, res) => {
     const deleted = await moviesService.deleteMovie(id);
     const { value } = deleted;
     if(!value) return res.status(STATUS.ERROR.NOT_FOUND).json(ERROR.idNotFound);
-    res.status(STATUS.SUCCESS.OK).json({ success: deleted })
+    res.status(STATUS.SUCCESS.OK).json({ success: 'Filme deletado com sucesso!' });
   } catch (error) {
     res.status(STATUS.ERROR.INTERNAL_ERROR).json(internalError(error));
 
