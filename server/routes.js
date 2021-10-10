@@ -22,7 +22,7 @@ router.post('/movies/create',
   moviesControllers.createMovie
 );
 router.get('/movies/', moviesValidations.validateToken, moviesControllers.getMovies);
-router.put('/movies/update', moviesValidations.validateId, uploadMovie, moviesValidations.validateUpdatedFields,moviesControllers.updateMovie);
-router.delete('/movies/delete/:id', moviesValidations.validateId, moviesControllers.deleteMovie);
+router.put('/movies/update/:id', moviesValidations.validateToken, moviesValidations.validateId, uploadMovie, moviesValidations.validateUpdatedFields,moviesControllers.updateMovie);
+router.delete('/movies/delete/:id', moviesValidations.validateToken, moviesValidations.validateId, moviesControllers.deleteMovie);
 
 module.exports = router;  
