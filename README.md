@@ -13,8 +13,8 @@ Here's where i tested multer in REST API
 
 ## what was worked(and will be)
 
-- [ ] Creation endpoints GET, POST, PUT and DELETE
-- [ ] Creation of CRUD API with REST archtecture
+- [x] Creation endpoints GET, POST, PUT and DELETE
+- [x] Creation of CRUD API with REST archtecture
 - [x] Generation of tokens with JWT
 - [ ] Management of tokens
-- [ ] Upload of files and storage with Multer
+- [x] Upload of files and storage with Multer
