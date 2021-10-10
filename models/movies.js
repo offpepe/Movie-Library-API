@@ -14,13 +14,13 @@ const getMovies = async () => {
   const db = await conn();
   const movies = await db.collection(coll).find().toArray();
   return movies; 
-}
+};
 
 const getById = async (id) => {
   const db = await conn();
   const movie = await db.collection(coll).find({ _id: ObjectId(id) }).toArray();
   return movie;
-}
+};
 
 const updateMovie = async (id, title, subtitle, description, conver) => {
    const db = await conn();
@@ -30,6 +30,11 @@ const updateMovie = async (id, title, subtitle, description, conver) => {
        description,
        conver }}, { new: true });
    return updated;
+};
+
+const deleteMovie = async (id) => {
+    const db = await conn();
+    return db.collection(coll).findOneAndDelete({ _id: ObjectId(id) });
 }
 
 module.exports = {
@@ -37,4 +42,5 @@ module.exports = {
   getMovies,
   updateMovie,
   getById,
+  deleteMovie,
 }

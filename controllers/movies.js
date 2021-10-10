@@ -36,8 +36,22 @@ const updateMovie = async (req, res) => {
   }
 }
 
+const deleteMovie = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await moviesService.deleteMovie(id);
+    const { value } = deleted;
+    if(!value) return res.status(STATUS.ERROR.NOT_FOUND).json(ERROR.idNotFound);
+    res.status(STATUS.SUCCESS.OK).json({ success: deleted })
+  } catch (error) {
+    res.status(STATUS.ERROR.INTERNAL_ERROR).json(internalError(error));
+
+  }
+}
+
 module.exports = {
     createMovie,
     getMovies,
     updateMovie,
+    deleteMovie,
 }

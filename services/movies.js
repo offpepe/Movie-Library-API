@@ -16,8 +16,14 @@ const updateMovie = async (id, title, subtitle, description, conver) => {
     return updated
 }
 
+const deleteMovie = async (id) => {
+    const op = await moviesModel.deleteMovie(id);
+    return op;
+}
+
 module.exports = {
     createMovie,
     getMovies,
     updateMovie,
+    deleteMovie,
 };

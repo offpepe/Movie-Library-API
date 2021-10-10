@@ -46,7 +46,12 @@ module.exports = {
     },
     fileNotFoundCover: {
         error: 'file_not_found',
-        code: '422',
+        code: 422,
         message: 'É necessário uma imagem para a capa'
+    },
+    idNotFound : {
+        error: 'not_found',
+        code: 404,
+        message: 'Não foi encontrado nenhum resultado com este ID'
     }
 };
