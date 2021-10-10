@@ -23,6 +23,6 @@ router.post('/movies/create',
 );
 router.get('/movies/', moviesValidations.validateToken, moviesControllers.getMovies);
 router.put('/movies/update', uploadMovie, moviesValidations.validateUpdatedFields,moviesControllers.updateMovie);
-router.delete('/movies/delete/:id', moviesControllers.deleteMovie);
+router.delete('/movies/delete/:id', moviesValidations.validateId, moviesControllers.deleteMovie);
 
 module.exports = router;  

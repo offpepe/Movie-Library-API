@@ -1,4 +1,5 @@
-const fs = require('fs').promises
+const fs = require('fs').promises;
+const { ObjectId } = require('mongodb');
 const STATUS = require('../services/httpStatus');
 const ERROR = require('../error/messages');
 
@@ -33,8 +34,15 @@ const validateUpdatedFields = async (req, res, next) => {
   next();
 }
 
+const validateId = async (req, res, next) => {
+  const { id } = req.params;
+  if(!ObjectId.isValid(id)) return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.invalidId);
+  next()
+}
+
 module.exports = {
     validateNewMovieData,
     validateToken,
     validateUpdatedFields,
+    validateId,
 }

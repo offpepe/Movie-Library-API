@@ -53,5 +53,10 @@ module.exports = {
         error: 'not_found',
         code: 404,
         message: 'Não foi encontrado nenhum resultado com este ID'
+    },
+    invalidId : {
+        error: 'invalid_id',
+        code: 422,
+        message: 'O id precisa ser válido(em BSON)',
     }
 };
