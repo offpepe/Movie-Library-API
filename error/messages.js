@@ -1,6 +1,6 @@
 module.exports = {
     someFieldEmpty: {
-        error: 'invalid_new_user',
+        error: 'invalid_fields',
         code: 422,
         message: 'Todos os campos precisam ser preenchidos corretamente.'
     },
@@ -43,5 +43,10 @@ module.exports = {
         error: 'not_logged',
         code: 401,
         message: 'É necessário login para este tipo de requisição',
+    },
+    fileNotFoundCover: {
+        error: 'file_not_found',
+        code: '422',
+        message: 'É necessário uma imagem para a capa'
     }
 };

@@ -24,9 +24,17 @@ const validateToken = async (req, res, next) => {
   const tokens = JSON.parse(rawTokens);
   if(!authorization || tokens.some((token) => token !== authorization)) return res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.notLoggedIn);
   next()
+};
+
+const validateUpdatedFields = async (req, res, next) => {
+  const { id, title, subtitle, description } = req.body;
+  if(!id || !title || !subtitle || !description ) return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.someFieldEmpty);
+  if (!req.file) return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.fileNotFoundCover);
+  next();
 }
 
 module.exports = {
     validateNewMovieData,
     validateToken,
+    validateUpdatedFields,
 }

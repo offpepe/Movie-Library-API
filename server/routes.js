@@ -22,6 +22,6 @@ router.post('/movies/create',
   moviesControllers.createMovie
 );
 router.get('/movies/', moviesValidations.validateToken, moviesControllers.getMovies);
-router.put('/movies/update', uploadMovie, moviesControllers.updateMovie);
+router.put('/movies/update', uploadMovie, moviesValidations.validateUpdatedFields,moviesControllers.updateMovie);
 
 module.exports = router;  
