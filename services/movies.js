@@ -11,9 +11,11 @@ const getMovies = async () => {
     return movies;
 };
 
+const getByiD = async (id) => moviesModel.getById(id)
+
 const updateMovie = async (id, title, subtitle, description, conver) => {
     const updated = await moviesModel.updateMovie(id, title, subtitle, description, conver);
-    return updated
+    return updated;
 }
 
 const deleteMovie = async (id) => {
@@ -26,4 +28,5 @@ module.exports = {
     getMovies,
     updateMovie,
     deleteMovie,
+    getByiD,
 };

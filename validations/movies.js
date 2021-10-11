@@ -40,6 +40,7 @@ const validateId = async (req, res, next) => {
   next()
 }
 
+
 module.exports = {
     validateNewMovieData,
     validateToken,

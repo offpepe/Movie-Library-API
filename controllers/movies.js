@@ -23,7 +23,7 @@ const getMovies = async (_req, res) => {
   } catch (error) {
     res.status(STATUS.ERROR.INTERNAL_ERROR).json(internalError(error));
   }
-}
+};
 
 const updateMovie = async (req, res) => {
   try {
@@ -35,7 +35,7 @@ const updateMovie = async (req, res) => {
   } catch (error) {
     res.status(STATUS.ERROR.INTERNAL_ERROR).json(internalError(error));
   }
-}
+};
 
 const deleteMovie = async (req, res) => {
   try {
@@ -48,7 +48,7 @@ const deleteMovie = async (req, res) => {
     res.status(STATUS.ERROR.INTERNAL_ERROR).json(internalError(error));
 
   }
-}
+};
 
 module.exports = {
     createMovie,

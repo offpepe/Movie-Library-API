@@ -21,7 +21,7 @@ router.post('/movies/create',
   moviesValidations.validateNewMovieData,
   moviesControllers.createMovie
 );
-router.get('/movies/', moviesValidations.validateToken, moviesControllers.getMovies);
+router.get('/movies/', moviesControllers.getMovies);
 router.put('/movies/update/:id', moviesValidations.validateToken, moviesValidations.validateId, uploadMovie, moviesValidations.validateUpdatedFields,moviesControllers.updateMovie);
 router.delete('/movies/delete/:id', moviesValidations.validateToken, moviesValidations.validateId, moviesControllers.deleteMovie);
 
