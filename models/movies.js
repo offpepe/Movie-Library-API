@@ -3,9 +3,9 @@ const conn = require('../connections/mongodb_conn');
 
 const coll = 'movies';
 
-const createMovie = async (title, subtitle, description, conver) => {
+const createMovie = async (title, subtitle, description, cover) => {
   const db = await conn();
-  const op = await db.collection(coll).insertOne({ title, subtitle, description, conver });
+  const op = await db.collection(coll).insertOne({ title, subtitle, description, cover });
   return op;
 };
 
@@ -22,13 +22,13 @@ const getById = async (id) => {
   return movie;
 };
 
-const updateMovie = async (id, title, subtitle, description, conver) => {
+const updateMovie = async (id, title, subtitle, description, cover) => {
    const db = await conn();
    const updated = await db.collection(coll).findOneAndUpdate({ _id: ObjectId(id) }, { $set: {  
        title,
        subtitle,
        description,
-       conver }}, { new: true });
+       cover }}, { new: true });
    return updated;
 };
 

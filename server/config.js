@@ -1,6 +1,6 @@
 const express = require('express');
 const router = require('./routes');
-const curs = require('curs');
+const cors = require('cors');
 const app = express();
 
 const PORT = process.env.API_KEY || 3000;
@@ -8,7 +8,7 @@ const PORT = process.env.API_KEY || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/uploads'));
-app.use(curs);
+app.use(cors());
 app.use(router);
 
 app.listen(PORT, () => console.log(`WE\'RE RUNNING ON ${PORT}`));

@@ -19,7 +19,7 @@ const validateNewUserData = async (req, res, next) => {
 };
 
 const validateEmail = async (req, res, next) => {
-    const { email } = req.body;
+  const { email } = req.body;
   const db = await connection();
   const user = await db.collection('users').find({ email }).toArray();
   if (user[0]) return res.status(STATUS.ERROR.NOT_ACCEPTABLE).json(ERROR.emailAlreadyExist);

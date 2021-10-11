@@ -13,8 +13,8 @@ const getMovies = async () => {
 
 const getByiD = async (id) => moviesModel.getById(id)
 
-const updateMovie = async (id, title, subtitle, description, conver) => {
-    const updated = await moviesModel.updateMovie(id, title, subtitle, description, conver);
+const updateMovie = async (id, title, subtitle, description, cover) => {
+    const updated = await moviesModel.updateMovie(id, title, subtitle, description, cover);
     return updated;
 }
 

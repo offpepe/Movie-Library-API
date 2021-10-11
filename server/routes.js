@@ -24,5 +24,6 @@ router.post('/movies/create',
 router.get('/movies/', moviesControllers.getMovies);
 router.put('/movies/update/:id', moviesValidations.validateToken, moviesValidations.validateId, uploadMovie, moviesValidations.validateUpdatedFields,moviesControllers.updateMovie);
 router.delete('/movies/delete/:id', moviesValidations.validateToken, moviesValidations.validateId, moviesControllers.deleteMovie);
+router.get('/movies/img/:filename', moviesControllers.getImage);
 
 module.exports = router;  

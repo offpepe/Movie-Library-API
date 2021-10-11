@@ -10,6 +10,7 @@ const createUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
+  console.log(req.body);
   const data = await usersService.loginUser(email, password);
   if (!data) return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.emailOrPasswordInvalid);
   return res.status(STATUS.SUCCESS.ACCEPTED).json(data);
