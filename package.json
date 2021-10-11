@@ -1,14 +1,14 @@
 {
-  "name": "nodejs-multer-playground",
+  "name": "movie-library-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "backend of trybe new game + movie-library-api",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Alan Albuquerque F. Lopes",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
