@@ -9,7 +9,7 @@
 
 ## Purpose  
 
-API for the first project of Front-end module on trybe, but now using my fullstack skills
+API for the first project of Front-end module on trybe, but now using my fullstack skills, its part of a personal project called Trybe new game +.
 
 ## what was worked(and will be)
 
