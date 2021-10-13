@@ -28,7 +28,7 @@ const updateMovie = async (id, title, subtitle, description, cover) => {
        title,
        subtitle,
        description,
-       cover }}, { new: true });
+       cover }}, { returnDocument: 'after' });
    return updated;
 };
 

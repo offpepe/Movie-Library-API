@@ -13,7 +13,7 @@ router.post('/users/create',
   userValidation.validateNewUserData,
   userValidation.validateEmail,
   usersControllers.createUser
-  );
+  );    
 router.post('/users/login', userValidation.validateLoginData, usersControllers.loginUser);
 router.post('/movies/create',
   moviesValidations.validateToken,
@@ -22,6 +22,7 @@ router.post('/movies/create',
   moviesControllers.createMovie
 );
 router.get('/movies/', moviesControllers.getMovies);
+router.get('/movies/:id', moviesValidations.validateId, moviesControllers.getById);
 router.put('/movies/update/:id', moviesValidations.validateToken, moviesValidations.validateId, uploadMovie, moviesValidations.validateUpdatedFields,moviesControllers.updateMovie);
 router.delete('/movies/delete/:id', moviesValidations.validateToken, moviesValidations.validateId, moviesControllers.deleteMovie);
 router.get('/movies/img/:filename', moviesControllers.getImage);

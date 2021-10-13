@@ -28,8 +28,8 @@ const validateToken = async (req, res, next) => {
 };
 
 const validateUpdatedFields = async (req, res, next) => {
-  const { id, title, subtitle, description } = req.body;
-  if(!id || !title || !subtitle || !description ) return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.someFieldEmty);
+  const { title, subtitle, description } = req.body;
+  if(!title || !subtitle || !description ) return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.someFieldEmpty);
   if (!req.file) return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.fileNotFoundCover);
   next();
 }

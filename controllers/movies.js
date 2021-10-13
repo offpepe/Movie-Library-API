@@ -25,6 +25,17 @@ const getMovies = async (_req, res) => {
   }
 };
 
+const getById = async (req,res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const movie = await moviesService.getByiD(id);
+    res.status(STATUS.SUCCESS.OK).json(movie)
+  } catch (error) {
+    res.status(STATUS.ERROR.INTERNAL_ERROR).json(internalError(error));
+  }
+}
+
 const updateMovie = async (req, res) => {
   try {
     const { id } = req.params;
@@ -64,4 +75,5 @@ module.exports = {
     updateMovie,
     deleteMovie,
     getImage,
+    getById,
 }

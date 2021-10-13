@@ -11,11 +11,16 @@ const getMovies = async () => {
     return movies;
 };
 
-const getByiD = async (id) => moviesModel.getById(id)
+const getByiD = async (id) => {
+    const movie = await moviesModel.getById(id);
+    return movie;
+};
 
 const updateMovie = async (id, title, subtitle, description, cover) => {
     const updated = await moviesModel.updateMovie(id, title, subtitle, description, cover);
-    return updated;
+    return { success: 1,
+    message: 'filme atualizado com sucesso!',
+    result: updated.value };
 }
 
 const deleteMovie = async (id) => {
