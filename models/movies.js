@@ -36,7 +36,6 @@ const updateMovie = async (id, title, subtitle, description, cover) => {
 const deleteMovie = async (id) => {
     const db = await conn();
     const movie = await getById(id);
-    console.log(movie);
     const { cover } = movie[0];
     fs.unlinkSync(`./uploads/movies/${cover}`);
     return db.collection(coll).findOneAndDelete({ _id: ObjectId(id) });
