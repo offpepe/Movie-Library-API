@@ -25,6 +25,6 @@ router.get('/movies/', moviesControllers.getMovies);
 router.get('/movies/:id', moviesValidations.validateId, moviesControllers.getById);
 router.put('/movies/update/:id', moviesValidations.validateToken, moviesValidations.validateId, uploadMovie, moviesValidations.validateUpdatedFields,moviesControllers.updateMovie);
 router.delete('/movies/delete/:id', moviesValidations.validateToken, moviesValidations.validateId, moviesControllers.deleteMovie);
-router.get('/movies/img/:filename', moviesControllers.getImage);
+router.get('/movies/img/:cover', moviesControllers.getImage);
 
 module.exports = router;  

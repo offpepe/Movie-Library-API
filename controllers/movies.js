@@ -7,9 +7,9 @@ const internalError = (error) => ({ error: 'internal_error', code: 505, message:
 
 const createMovie = async (req, res) => {
   try {
-    const { title, subtitle, description } = req.body;
+    const { title, subtitle, genre, releaseDate, rate, createdBy, createdAt, description } = req.body;
     const { filename } = req.file; 
-    const op = await moviesService.createMovie(title, subtitle, description, filename);
+    const op = await moviesService.createMovie(title, subtitle, genre, releaseDate, rate, createdBy, createdAt, description, filename);
     res.status(STATUS.SUCCESS.CREATED).json(op);   
   } catch (error) {
     res.status(STATUS.ERROR.INTERNAL_ERROR).json(internalError(error));
@@ -40,8 +40,8 @@ const updateMovie = async (req, res) => {
   try {
     const { id } = req.params;
     const { title, subtitle, description } = req.body;
-    const { filename } = req.file;
-    const updated = await moviesService.updateMovie(id, title, subtitle, description, filename);
+    const { cover } = req.file;
+    const updated = await moviesService.updateMovie(id, title, subtitle, description, cover);
     res.status(STATUS.SUCCESS.ACCEPTED).json(updated);
   } catch (error) {
     res.status(STATUS.ERROR.INTERNAL_ERROR).json(internalError(error));
@@ -62,8 +62,8 @@ const deleteMovie = async (req, res) => {
 
   const getImage = (req, res) => {
     try {
-      const { filename } = req.params;
-      res.status(STATUS.SUCCESS.OK).sendFile(filename, { root: path.join(__dirname, '../uploads/movies') });
+      const { cover } = req.params;
+      res.status(STATUS.SUCCESS.OK).sendFile(cover, { root: path.join(__dirname, '../uploads/movies') });
     } catch (error) { 
       res.status(STATUS.ERROR.INTERNAL_ERROR).json(internalError(error));
     }

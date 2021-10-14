@@ -3,9 +3,9 @@ const conn = require('../connections/mongodb_conn');
 
 const coll = 'movies';
 
-const createMovie = async (title, subtitle, description, cover) => {
+const createMovie = async (title, subtitle, genre, releaseDate, rate, createdBy, createdAt, description, cover) => {
   const db = await conn();
-  const op = await db.collection(coll).insertOne({ title, subtitle, description, cover });
+  const op = await db.collection(coll).insertOne({ title, subtitle, genre, releaseDate, rate, createdBy, createdAt, description, cover });
   return op;
 };
 

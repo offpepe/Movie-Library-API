@@ -58,5 +58,15 @@ module.exports = {
         error: 'invalid_id',
         code: 422,
         message: 'O id precisa ser válido(em BSON)',
-    }
+    },
+    invalidReleaseYear: {
+        error: 'invalid_data',
+        code: 406,
+        message: 'Data inválida.'
+    },
+    invalidRate: {
+        error: 'invalid_data',
+        code: 406,
+        message: 'O rate deve ser de 1 a 5',
+    },
 };

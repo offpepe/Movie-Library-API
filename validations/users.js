@@ -13,8 +13,6 @@ const validateNewUserData = async (req, res, next) => {
     return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.emailNotValid)
   if(username.length < 5 || password.length < 8)
     return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.usernameOrPasswordInvalid);
-  if(type !== ('Creator' || 'Reader')) 
-    return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.invalidUserType);
   next()
 };
 

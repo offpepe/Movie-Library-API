@@ -12,7 +12,7 @@ let schema;
 const connection = async () => {
     if (schema) return Promise.resolve(schema);
     return MongoClient.connect(MONGODB_URL, OPTIONS)
-    .then((conn) => conn.db('multer_playground'))
+    .then((conn) => conn.db('movie_library'))
     .then((dbschema) => { 
         schema = dbschema;
         return schema;
