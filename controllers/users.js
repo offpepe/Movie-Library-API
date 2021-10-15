@@ -21,7 +21,7 @@ const getUserByEmail = async (req, res) => {
   if (!user) return res.status(STATUS.SUCCESS.NO_CONTENT).json({
     result: null
   });
-  return res.status(STATUS.SUCCESS.OK).json({ result: { email: user.email, username: user.username } });
+  return res.status(STATUS.SUCCESS.OK).json(user);
 }
 
 module.exports = {

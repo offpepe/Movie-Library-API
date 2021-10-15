@@ -1,3 +1,4 @@
+const md5 = require('crypto-js/md5')
 const usersModel = require('../models/users');
 const generateToken = require('./generateToken');
 
@@ -23,7 +24,8 @@ const loginUser = async (email, password) => {
 const getUserByEmail = async (email) => {
   const user = await usersModel.getUserByEmail(email);
   if (!user) return false 
-  return user;
+  const hash = md5(email).toString();
+  return { result: { email: user.email, username: user.username, emailHash: hash  } };
 }
 
 module.exports = {
