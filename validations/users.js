@@ -10,7 +10,7 @@ const validateNewUserData = async (req, res, next) => {
   if(!username || !email || !type || !password)
     return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.someFieldEmpty);
   if(!pattern.test(email))
-    return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.emailNotValid)
+    return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.emailNotValid);
   if(username.length < 5 || password.length < 8)
     return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.usernameOrPasswordInvalid);
   next()
@@ -33,8 +33,16 @@ const validateLoginData = async (req, res, next) => {
   next()
 };
 
+const validateEmailParam = async (req, res, next) => {
+  const { email } = req.params
+  if(!pattern.test(email))
+    return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.emailNotValid);
+  next();
+}
+
 module.exports = {
     validateNewUserData,
     validateEmail,
     validateLoginData,
+    validateEmailParam,
 }

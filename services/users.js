@@ -20,7 +20,14 @@ const loginUser = async (email, password) => {
   };
 }
 
+const getUserByEmail = async (email) => {
+  const user = await usersModel.getUserByEmail(email);
+  if (!user) return false 
+  return user;
+}
+
 module.exports = {
     createUser,
     loginUser,
+    getUserByEmail,
 }

@@ -15,7 +15,14 @@ const loginUser = async (email, password) => {
   return user;
 }
 
+const getUserByEmail = async (email) => {
+  const db = await conn();
+  const user = await db.collection(coll).find({ email }).toArray();
+  return user[0];
+}
+
 module.exports = {
     createUser,
     loginUser,
+    getUserByEmail,
 }

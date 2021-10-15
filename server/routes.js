@@ -9,6 +9,8 @@ const moviesValidations = require('../validations/movies');
 const uploadMovie = multer({ dest: 'uploads/movies/' }).single('cover');
 
 /* USERS ROUTES */
+
+router.get('/users/:email', userValidation.validateEmailParam, usersControllers.getUserByEmail)
 router.post('/users/create',
   userValidation.validateNewUserData,
   userValidation.validateEmail,
