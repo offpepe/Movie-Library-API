@@ -16,8 +16,8 @@ const getByiD = async (id) => {
     return movie;
 };
 
-const updateMovie = async (id, title, subtitle, description, cover) => {
-    const updated = await moviesModel.updateMovie(id, title, subtitle, description, cover);
+const updateMovie = async (id, title, subtitle, genre, releaseDate, rate, description, cover, lastUpdate) => {
+    const updated = await moviesModel.updateMovie(id, title, subtitle, genre, releaseDate, rate, description, cover, lastUpdate);
     return { success: 1,
     message: 'filme atualizado com sucesso!',
     result: updated.value };

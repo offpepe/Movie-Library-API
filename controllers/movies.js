@@ -39,9 +39,9 @@ const getById = async (req,res) => {
 const updateMovie = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, subtitle, description } = req.body;
-    const { cover } = req.file;
-    const updated = await moviesService.updateMovie(id, title, subtitle, description, cover);
+    const { title, subtitle, genre, releaseDate, rate, description, lastUpdate } = req.body;
+    const { filename } = req.file;
+    const updated = await moviesService.updateMovie(id, title, subtitle, genre, releaseDate, rate, description, filename, lastUpdate);
     res.status(STATUS.SUCCESS.ACCEPTED).json(updated);
   } catch (error) {
     res.status(STATUS.ERROR.INTERNAL_ERROR).json(internalError(error));

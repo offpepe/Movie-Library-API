@@ -17,7 +17,7 @@ const validateNewMovieData = (req, res, next) => {
     fs.unlinkSync(`./uploads/movies/${filename}`);  
     return res.status(STATUS.ERROR.NOT_ACCEPTABLE).json(ERROR.fileTypeNotAcceptable);
   }
-  if (typeof rate !== 'number' || rate > 5 || rate < 1) {
+  if (typeof rate !== 'number' || rate > 5 || rate < 1) {x
     fs.unlinkSync(`./uploads/movies/${filename}`);  
     return res.status(STATUS.ERROR.NOT_ACCEPTABLE).json(ERROR.invalidRate);
   }
@@ -33,8 +33,9 @@ const validateToken = async (req, res, next) => {
 };
 
 const validateUpdatedFields = async (req, res, next) => {
-  const { title, subtitle, description } = req.body;
-  if(!title || !subtitle || !description ) return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.someFieldEmpty);
+  const {  title, subtitle, genre, releaseDate, description, rate } = req.body;
+  console.log(req.body);
+  if(!title || !subtitle || !description || !genre || !releaseDate || !rate  ) return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.someFieldEmpty);
   if (!req.file) return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.fileNotFoundCover);
   next();
 }

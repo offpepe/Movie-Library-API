@@ -23,13 +23,21 @@ const getById = async (id) => {
   return movie;
 };
 
-const updateMovie = async (id, title, subtitle, description, cover) => {
+const updateMovie = async (id, title, subtitle, genre, releaseDate, rate, description, cover, lastUpdate) => {
    const db = await conn();
+   const movie = await getById(id);
+   const { cover: oldCover } = movie[0];
+   fs.unlinkSync(`./uploads/movies/${oldCover}`);
    const updated = await db.collection(coll).findOneAndUpdate({ _id: ObjectId(id) }, { $set: {  
        title,
        subtitle,
        description,
-       cover }}, { returnDocument: 'after' });
+       genre,
+       releaseDate,
+       rate,
+       cover,
+       lastUpdate,
+       }}, { returnDocument: 'after' });
    return updated;
 };
 
