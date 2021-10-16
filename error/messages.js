@@ -73,5 +73,10 @@ module.exports = {
         error: 'invalid_data',
         code: 422,
         message: 'A senha deve conter no mínimo 8 letras',
-    }
+    },
+    invalidToken: {
+        error: 'invalid_token',
+        code: 401,
+        message: 'Este token é inválido',
+    },
 };

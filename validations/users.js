@@ -1,3 +1,5 @@
+const fs = require('fs').promises;
+const jwt = require('jsonwebtoken');
 const usersService = require('../services/users');
 
 const STATUS = require('../services/httpStatus');
@@ -47,7 +49,19 @@ const validateResetData = async (req, res, next) => {
   return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.someFieldEmpty);
   if (password.length < 8)
     return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.invalidPassword);
-  next()
+  next();
+}
+
+const validateToken = async (req, res, next) => {
+  const { token } = req.params;
+  const secret = await fs.readFile('./secret','utf-8');
+  if (!token) res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.notLoggedIn);
+  jwt.verify(token, secret, (err, decode) => {
+    console.log(err);
+    if (err) res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.invalidToken);
+    req.type = decode.type;
+  });
+  next();
 }
 
 module.exports = {
@@ -56,4 +70,5 @@ module.exports = {
     validateLoginData,
     validateEmailParam,
     validateResetData,
+    validateToken,
 }

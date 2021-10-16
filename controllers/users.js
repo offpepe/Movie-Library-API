@@ -29,6 +29,11 @@ const resetPassword = async (req, res) => {
   const op = await usersService.resetPassword(email, password);
   if (!user) return res.status(STATUS.ERROR.NOT_ACCEPTABLE).json(ERROR.emailNotValid);
   return res.status(STATUS.SUCCESS.OK).json(op)
+};
+
+const validateToken = async  (req, res) => {
+  const { type } = req;
+  res.status(200).json({ success: 'token_still_valid', type });
 }
 
 module.exports = {
@@ -36,4 +41,5 @@ module.exports = {
     loginUser,
     getUserByEmail,
     resetPassword,
+    validateToken,
 };

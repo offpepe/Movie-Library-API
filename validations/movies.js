@@ -24,14 +24,6 @@ const validateNewMovieData = (req, res, next) => {
   next();
 };
 
-const validateToken = async (req, res, next) => {
-  const { authorization } = req.headers;
-  const rawTokens = await fs.readFile('./assets/tokens.json', 'utf-8');
-  const tokens = JSON.parse(rawTokens);
-  if(!authorization || tokens.every((token) => token !==  authorization)) return res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.notLoggedIn);
-  next()  
-};
-
 const validateUpdatedFields = async (req, res, next) => {
   const {  title, subtitle, genre, releaseDate, description, rate } = req.body;
   console.log(req.body);
@@ -49,7 +41,6 @@ const validateId = async (req, res, next) => {
 
 module.exports = {
     validateNewMovieData,
-    validateToken,
     validateUpdatedFields,
     validateId,
 }

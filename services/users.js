@@ -25,7 +25,7 @@ const getUserByEmail = async (email) => {
   const user = await usersModel.getUserByEmail(email);
   if (!user) return false 
   const hash = md5(email).toString();
-  return { result: { email: user.email, username: user.username, emailHash: hash  } };
+  return { result: { email: user.email, username: user.username, type: user.type,  emailHash: hash  } };
 }
 
 const resetPassword = async (email, password) => {
