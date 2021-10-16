@@ -55,12 +55,22 @@ const validateResetData = async (req, res, next) => {
 const validateToken = async (req, res, next) => {
   const { token } = req.params;
   const secret = await fs.readFile('./secret','utf-8');
-  if (!token) res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.notLoggedIn);
+  if (!token) return res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.notLoggedIn);
   jwt.verify(token, secret, (err, decode) => {
-    console.log(err);
-    if (err) res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.invalidToken);
+    if (err) return res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.invalidToken);
     req.type = decode.type;
-  });
+  }); 
+  next();
+}
+
+const validateTokenPost = async (req, res, next) => {
+  const { authorization: token } = req.headers;
+  const secret = await fs.readFile('./secret','utf-8');
+  if (!token) return res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.notLoggedIn);
+  jwt.verify(token, secret, (err, decode) => {
+    if (err) return res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.invalidToken);
+    req.type = decode.type;
+  }); 
   next();
 }
 
@@ -71,4 +81,5 @@ module.exports = {
     validateEmailParam,
     validateResetData,
     validateToken,
+    validateTokenPost,
 }

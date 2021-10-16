@@ -10,7 +10,7 @@ const uploadMovie = multer({ dest: 'uploads/movies/' }).single('cover');
 
 /* USERS ROUTES */
 
-router.get('/users/:token', userValidation.validateToken, usersControllers.validateToken);
+router.get('/users/validate/:token', userValidation.validateToken, usersControllers.validateToken);
 router.get('/users/:email', userValidation.validateEmailParam, usersControllers.getUserByEmail)
 router.post('/users/create',
   userValidation.validateNewUserData,
@@ -23,15 +23,15 @@ router.post('/users/reset/:token', userValidation.validateResetData, usersContro
 /* MOVIE ROUTES */
 
 router.post('/movies/create',
-  userValidation.validateToken,
+  userValidation.validateTokenPost,
   uploadMovie,
   moviesValidations.validateNewMovieData,
   moviesControllers.createMovie
 );
 router.get('/movies/', moviesControllers.getMovies);
 router.get('/movies/:id', moviesValidations.validateId, moviesControllers.getById);
-router.put('/movies/update/:id', userValidation.validateToken, moviesValidations.validateId, uploadMovie, moviesValidations.validateUpdatedFields,moviesControllers.updateMovie);
-router.delete('/movies/delete/:id', userValidation.validateToken, moviesValidations.validateId, moviesControllers.deleteMovie);
+router.put('/movies/update/:id', userValidation.validateTokenPost, moviesValidations.validateId, uploadMovie, moviesValidations.validateUpdatedFields,moviesControllers.updateMovie);
+router.delete('/movies/delete/:id', userValidation.validateTokenPost, moviesValidations.validateId, moviesControllers.deleteMovie);
 router.get('/movies/img/:cover', moviesControllers.getImage);
 
 module.exports = router;  

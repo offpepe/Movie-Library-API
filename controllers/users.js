@@ -33,7 +33,7 @@ const resetPassword = async (req, res) => {
 
 const validateToken = async  (req, res) => {
   const { type } = req;
-  res.status(200).json({ success: 'token_still_valid', type });
+  return res.status(200).json({ success: 'token_still_valid', type });
 }
 
 module.exports = {
