@@ -11,12 +11,12 @@ const uploadMovie = multer({ dest: 'uploads/movies/' }).single('cover');
 /* USERS ROUTES */
 
 router.get('/users/validate/:token', userValidation.validateToken, usersControllers.validateToken);
-router.get('/users/:email', userValidation.validateEmailParam, usersControllers.getUserByEmail)
+router.get('/users/:email', userValidation.validateEmailParam, usersControllers.getUserByEmail);
 router.post('/users/create',
   userValidation.validateNewUserData,
   userValidation.validateEmail,
   usersControllers.createUser
-  );    
+  );
 router.post('/users/login', userValidation.validateLoginData, usersControllers.loginUser);
 router.post('/users/reset/:token', userValidation.validateResetData, usersControllers.resetPassword);
 
