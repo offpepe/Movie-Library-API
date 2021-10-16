@@ -1,4 +1,4 @@
-const connection = require('../connections/mongodb_conn');
+const usersService = require('../services/users');
 
 const STATUS = require('../services/httpStatus');
 const ERROR = require('../error/messages');
@@ -18,9 +18,8 @@ const validateNewUserData = async (req, res, next) => {
 
 const validateEmail = async (req, res, next) => {
   const { email } = req.body;
-  const db = await connection();
-  const user = await db.collection('users').find({ email }).toArray();
-  if (user[0]) return res.status(STATUS.ERROR.NOT_ACCEPTABLE).json(ERROR.emailAlreadyExist);
+  const { result: user } = await usersService.getUserByEmail(email);
+  if (user) return res.status(STATUS.ERROR.NOT_ACCEPTABLE).json(ERROR.emailAlreadyExist);
   next();
 };
 
@@ -40,9 +39,21 @@ const validateEmailParam = async (req, res, next) => {
   next();
 }
 
+const validateResetData = async (req, res, next) => {
+  const { email, password } = req.body;
+  const { result: user } = await usersService.getUserByEmail(email);
+  if (!user) return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.emailNotValid);
+  if (!email || !password)
+  return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.someFieldEmpty);
+  if (password.length < 8)
+    return res.status(STATUS.ERROR.UNPROCESSABLE_ENTITY).json(ERROR.invalidPassword);
+  next()
+}
+
 module.exports = {
     validateNewUserData,
     validateEmail,
     validateLoginData,
     validateEmailParam,
+    validateResetData,
 }

@@ -21,8 +21,15 @@ const getUserByEmail = async (email) => {
   return user[0];
 }
 
+const resetPassword = async (email, password) => {
+  const db = await conn();
+  const op = await db.collection(coll).findOneAndUpdate({ email }, { $set: { password } }, { returnDocument: 'after' });
+  return op;
+}
+
 module.exports = {
     createUser,
     loginUser,
     getUserByEmail,
-}
+    resetPassword,
+} 

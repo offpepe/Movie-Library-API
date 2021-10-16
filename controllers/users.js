@@ -24,8 +24,16 @@ const getUserByEmail = async (req, res) => {
   return res.status(STATUS.SUCCESS.OK).json(user);
 }
 
+const resetPassword = async (req, res) => {
+  const { email, password } = req.body
+  const op = await usersService.resetPassword(email, password);
+  if (!user) return res.status(STATUS.ERROR.NOT_ACCEPTABLE).json(ERROR.emailNotValid);
+  return res.status(STATUS.SUCCESS.OK).json(op)
+}
+
 module.exports = {
     createUser,
     loginUser,
     getUserByEmail,
+    resetPassword,
 };

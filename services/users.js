@@ -28,8 +28,15 @@ const getUserByEmail = async (email) => {
   return { result: { email: user.email, username: user.username, emailHash: hash  } };
 }
 
+const resetPassword = async (email, password) => {
+  const op = await usersModel.resetPassword(email, password);
+  if(!op.value) return false;
+  return { success: 'password_reseted' };
+}
+
 module.exports = {
     createUser,
     loginUser,
     getUserByEmail,
+    resetPassword,
 }

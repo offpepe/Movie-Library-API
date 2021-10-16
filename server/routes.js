@@ -17,6 +17,7 @@ router.post('/users/create',
   usersControllers.createUser
   );    
 router.post('/users/login', userValidation.validateLoginData, usersControllers.loginUser);
+router.post('/users/reset/:token', userValidation.validateResetData, usersControllers.resetPassword);
 router.post('/movies/create',
   moviesValidations.validateToken,
   uploadMovie,

@@ -69,4 +69,9 @@ module.exports = {
         code: 406,
         message: 'O rate deve ser de 1 a 5',
     },
+    invalidPassword: {
+        error: 'invalid_data',
+        code: 422,
+        message: 'A senha deve conter no mínimo 8 letras',
+    }
 };
