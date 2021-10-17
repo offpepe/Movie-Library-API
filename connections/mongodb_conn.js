@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-const MONGODB_URL = 'mongodb+srv://offpepe:al077afl@mongocluster.oex1m.mongodb.net/movieLibrary?retryWrites=true&w=majority';
+const MONGODB_URL = `mongodb+srv://offpepe:${process.env.DBPASSWORD}@mongocluster.oex1m.mongodb.net/movie-library?retryWrites=true&w=majority`;
 
 const OPTIONS = {
     useNewUrlParser: true,
