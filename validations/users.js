@@ -54,7 +54,7 @@ const validateResetData = async (req, res, next) => {
 
 const validateToken = async (req, res, next) => {
   const { token } = req.params;
-  const secret = await fs.readFile('./secret','utf-8');
+  const secret = process.env.SECRET;
   if (!token) return res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.notLoggedIn);
   jwt.verify(token, secret, (err, decode) => {
     if (err) return res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.invalidToken);
@@ -65,7 +65,7 @@ const validateToken = async (req, res, next) => {
 
 const validateTokenPost = async (req, res, next) => {
   const { authorization: token } = req.headers;
-  const secret = await fs.readFile('./secret','utf-8');
+  const secret = process.env.SECRET;
   if (!token) return res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.notLoggedIn);
   jwt.verify(token, secret, (err, decode) => {
     if (err) return res.status(STATUS.ERROR.UNAUTHORIZED).json(ERROR.invalidToken);
