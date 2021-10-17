@@ -17,5 +17,6 @@ API for the first project of Front-end module on trybe, but now using my fullsta
 - [x] Creation of CRUD API with REST archtecture
 - [x] Generation of tokens with JWT
 - [x] Management of tokens
-- [x] Upload of files and storage with Multer]
-- [ ] Deployment
+- [x] Upload of files and storage with Multer
+- [x] Receive data from MongoDB cluster
+- [x] API Deployment
