@@ -9,9 +9,7 @@ const moviesValidations = require('../validations/movies');
 
 const router = express.Router();
 /* multer setup w/s3 aws service */
-const credentials = new aws.SharedIniFileCredentials({ profile: 'personal-account' });
 aws.config.region = 'us-east-2';
-aws.config.credentials = credentials;
 const { S3_BUCKET_NAME } = process.env
 const s3 = new aws.S3({ /* -- */ });
 const uploadMovie = multer({
