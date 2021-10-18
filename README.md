@@ -20,6 +20,7 @@ API for the first project of Front-end module on trybe, but now using my fullsta
 - Upload of files and storage with Multer
 - Receive data from MongoDB cluster
 - API Deployment
+- File management with AWS S3 bucket service
 
 ## How it works
 
