@@ -56,7 +56,7 @@ it search, catalog, delete and update movies, some of that actions needs a token
 
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
   
-feito com o 💚💛💜🖤🧡
+maded with 💚💛💜🖤🧡
                     
 </div>
   
