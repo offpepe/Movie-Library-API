@@ -1,12 +1,35 @@
 const express = require('express');
-const router = express.Router();
-const multer = require('multer'); 
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+const aws = require('aws-sdk');
 const userValidation = require('../validations/users');
 const usersControllers = require('../controllers/users');
 const moviesControllers = require('../controllers/movies');
 const moviesValidations = require('../validations/movies');
 
-const uploadMovie = multer({ dest: 'uploads/movies/' }).single('cover');
+const router = express.Router();
+/* multer setup w/s3 aws service */
+const credentials = new aws.SharedIniFileCredentials({ profile: 'personal-account' });
+aws.config.region = 'us-east-2';
+aws.config.credentials = credentials;
+const { S3_BUCKET_NAME } = process.env
+const s3 = new aws.S3({ /* -- */ });
+const uploadMovie = multer({
+  storage: multerS3({
+    s3,
+    bucket: S3_BUCKET_NAME,
+    acl: 'public-read',
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    metadata: (_req, file, cb) => {
+      cb(null, {fieldName: file.fieldname});
+    },
+    key: (_req, _file, cb) =>  {
+      cb(null, Date.now().toLocaleString('pt-br'));
+    }
+  }),
+  dest: 'uploads/movies/',
+}).single('cover');
+
 
 /* USERS ROUTES */
 
@@ -33,5 +56,8 @@ router.get('/movies/:id', moviesValidations.validateId, moviesControllers.getByI
 router.put('/movies/update/:id', userValidation.validateTokenPost, moviesValidations.validateId, uploadMovie, moviesValidations.validateUpdatedFields,moviesControllers.updateMovie);
 router.delete('/movies/delete/:id', userValidation.validateTokenPost, moviesValidations.validateId, moviesControllers.deleteMovie);
 router.get('/movies/img/:cover', moviesControllers.getImage);
+router.post('/test/upload', uploadMovie, (req, res) => {
+  res.status(200).json(req.file);
+});
 
 module.exports = router;  
