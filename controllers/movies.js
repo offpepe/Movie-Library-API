@@ -8,8 +8,8 @@ const internalError = (error) => ({ error: 'internal_error', code: 505, message:
 const createMovie = async (req, res) => {
   try {
     const { title, subtitle, genre, releaseDate, rate, createdBy, createdAt, description } = req.body;
-    const { filename } = req.file; 
-    const op = await moviesService.createMovie(title, subtitle, genre, releaseDate, rate, createdBy, createdAt, description, filename);
+    const { location } = req.file; 
+    const op = await moviesService.createMovie(title, subtitle, genre, releaseDate, rate, createdBy, createdAt, description, location);
     res.status(STATUS.SUCCESS.CREATED).json(op);   
   } catch (error) {
     res.status(STATUS.ERROR.INTERNAL_ERROR).json(internalError(error));
@@ -39,8 +39,8 @@ const updateMovie = async (req, res) => {
   try {
     const { id } = req.params;
     const { title, subtitle, genre, releaseDate, rate, description, lastUpdate } = req.body;
-    const { filename } = req.file;
-    const updated = await moviesService.updateMovie(id, title, subtitle, genre, releaseDate, rate, description, filename, lastUpdate);
+    const { location } = req.file;
+    const updated = await moviesService.updateMovie(id, title, subtitle, genre, releaseDate, rate, description, location, lastUpdate);
     res.status(STATUS.SUCCESS.ACCEPTED).json(updated);
   } catch (error) {
     res.status(STATUS.ERROR.INTERNAL_ERROR).json(internalError(error));

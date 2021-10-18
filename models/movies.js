@@ -25,9 +25,6 @@ const getById = async (id) => {
 
 const updateMovie = async (id, title, subtitle, genre, releaseDate, rate, description, cover, lastUpdate) => {
    const db = await conn();
-   const movie = await getById(id);
-   const { cover: oldCover } = movie[0];
-   fs.unlinkSync(`./uploads/movies/${oldCover}`);
    const updated = await db.collection(coll).findOneAndUpdate({ _id: ObjectId(id) }, { $set: {  
        title,
        subtitle,
@@ -43,9 +40,6 @@ const updateMovie = async (id, title, subtitle, genre, releaseDate, rate, descri
 
 const deleteMovie = async (id) => {
     const db = await conn();
-    const movie = await getById(id);
-    const { cover } = movie[0];
-    fs.unlinkSync(`./uploads/movies/${cover}`);
     return db.collection(coll).findOneAndDelete({ _id: ObjectId(id) });
 }
 
