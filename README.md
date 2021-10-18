@@ -1,6 +1,6 @@
 <div align="center">
 
-# Movie Library
+# Movie Library API
 
 ![movie-library-icon](https://user-images.githubusercontent.com/62621800/136698669-86ac357c-167b-4665-bc4f-3b6c171a83d4.jpg)
 
