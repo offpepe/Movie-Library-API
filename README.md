@@ -1,9 +1,9 @@
 <div align="center">
 
 # Movie Library API
-
-![movie-library-icon](https://user-images.githubusercontent.com/62621800/136698669-86ac357c-167b-4665-bc4f-3b6c171a83d4.jpg)
-
+  
+<img src="https://user-images.githubusercontent.com/62621800/136698669-86ac357c-167b-4665-bc4f-3b6c171a83d4.jpg"  width="300" />  
+  
 </div>
 
 
@@ -52,8 +52,13 @@ it search, catalog, delete and update movies, some of that actions needs a token
   
 ## Aplication
   
-### [🎞](https://movie-library-api.herokuapp.com/users/alan.alb.flopes@gmail.com)
+# [🎞](https://movie-library-api.herokuapp.com/users/alan.alb.flopes@gmail.com)
 
+
+<br/><br/><br/><br/>  
+  
+#### [Click here to see the front-end application](https://github.com/offpepe/movie-library)
+  
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
   
 maded with 💚💛💜🖤🧡
